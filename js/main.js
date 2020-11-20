@@ -80,5 +80,66 @@ function kurismiestas (){
         }
     }
     return which;
+    for (let i=0; i<weather.forecastTimestamps.length;i++){
+        if (dataSelected === weather.forecastTimestamps[i].forecastTimeUtc.slice(0,10)){
+            let tbody = document.createTextNode(weather.forecastTimestamps[i].forecastTimeUtc.slice(10,30));
+            let temperatura = document.createTextNode(weather.forecastTimestamps[i].airTemperature+"C");
+
+            let col = document.createElement('td');
+            let col10 = document.createElement('td');
+            let col11 = document.createElement('td');
+
+            row.appendChild(col);
+            row.appendChild(col10);
+            row.appendChild(col11);
+
+            col.appendChild(laikas);
+            col10.appendChild(temperatura);
+
+            let oras = document.createElement('i');
+            switch (weather.forecastTimestamps[i].conditionCode){
+                case "clear":
+                    oras.classList.add("fas","fa-sun");
+                    break;
+                case "isolated-clouds":
+                    oras.classList.add("fas","fa-cloud");
+                    break;
+                case "scattered-clouds":
+                    oras.classList.add("fas","fa-cloud-sun");
+                    break;
+                case "overcast":
+                    oras.classList.add("fas","fa-cloud-sun");
+                    break;
+                case "light-rain":
+                    oras.classList.add("fas","fa-cloud-rain");
+                    break;
+                case "moderate-rain":
+                    oras.classList.add("fas","fa-cloud-showers-heavy");
+                    break;
+                case "heavy-rain":
+                    oras.classList.add("fas","fa-cloud-showers-heavy");
+                    break;
+                case "sleet":
+                    oras.classList.add("fas","fa-cloud-meatball");
+                    break;
+                case "light-snow":
+                    oras.classList.add("fas","fa-snowflake");
+                    break;
+                case "moderate-snow":
+                    oras.classList.add("fas","fa-snowflake");
+                    break;
+                case "heavy-snow":
+                    oras.classList.add("fas","fa-snowflake");
+                    break;
+                case "fog":
+                    oras.classList.add("fas","fa-smog");
+                    break;
+                case "na":
+                    oras.classList.add("fas","fa-question");
+                    break;
+            }
+        col11.appendChild(oras);
+        }
+    }
 }
 
